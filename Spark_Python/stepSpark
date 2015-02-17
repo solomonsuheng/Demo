@@ -1,0 +1,6 @@
+1: ./bin/pyspark
+2: textFile = sc.textFile("readme")
+3: textFile.count()#Number of items in this RDD
+4: textFile.first()#First item in this RDD
+5: textFile.filter(lambda line: "spark" in line).count()#count the number ofthe given word
+6: wordCounts = textFile.flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a+b)
