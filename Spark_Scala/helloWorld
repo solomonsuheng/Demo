@@ -1,0 +1,5 @@
+var textFile = sc.textFile("README.md")
+textFile.count()//Number of items in this RDD(Resilient Distributed Dataset)
+textFile.first() //First item in this RDD(Resilient Distributed Dataset)
+var lineWithSpark = textFile.filter(line=>line.contains("Spark"))
+textFile.filter(line=>line.contains("Spark")).count()//How many lines contain "Spark"?
