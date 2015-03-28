@@ -3,3 +3,8 @@ textFile.count()//Number of items in this RDD(Resilient Distributed Dataset)
 textFile.first() //First item in this RDD(Resilient Distributed Dataset)
 var lineWithSpark = textFile.filter(line=>line.contains("Spark"))
 textFile.filter(line=>line.contains("Spark")).count()//How many lines contain "Spark"?
+textFile.map(line=>line.split(" ").size).reduce((a,b)=>if (a>b) a else b)
+textFile.map(line=>line.split(" ").szie).reduce((a,b)=>Math.max(a,b))
+
+//HelloWorld of BigData is WordCount
+val wordCounts = textFile.flatMap(line=>line.split(" ")).map(word=>(word,1)).reduceByKey((a,b)=>a+b)
