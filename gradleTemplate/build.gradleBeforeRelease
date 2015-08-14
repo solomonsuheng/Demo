@@ -1,0 +1,24 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+version = '1.0'
+
+task "create-dirs" << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
+repositories {
+    mavenLocal()
+}
+
+dependencies {
+    compile 'log4j:log4j:1.2.17'
+    testCompile 'junit:junit:4.11'
+}
+
+jar {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+        attributes 'Main-Class': 'HelloWorld'
+    }
+}
